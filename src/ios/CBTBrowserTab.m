@@ -62,7 +62,7 @@
 }
 
 - (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
-    [self.commandDelegate evalJs:@"cordova.fireWindowEvent('browsertab.closed'); "];
+    [self.commandDelegate evalJs:@"cordova.fireDocumentEvent('browsertab.closed'); "];
 }
 
 @end
