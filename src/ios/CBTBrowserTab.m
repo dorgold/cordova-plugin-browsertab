@@ -45,6 +45,8 @@
   }
 
   _safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+  _safariViewController.delegate = self;
+    
   [self.viewController presentViewController:_safariViewController animated:YES completion:nil];
 
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -57,6 +59,10 @@
   }
   [_safariViewController dismissViewControllerAnimated:YES completion:nil];
   _safariViewController = nil;
+}
+
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    [self.commandDelegate evalJs:@"cordova.fireWindowEvent('browsertab.closed'); "];
 }
 
 @end
